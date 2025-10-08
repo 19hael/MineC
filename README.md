@@ -1,139 +1,146 @@
-MicroC - Low-Level Language with x86-64 ASM Support
-🚀 Overview
-MicroC es un lenguaje de programación de bajo nivel con soporte nativo para ASM x86-64 embebido, diseñado para control total del hardware y depuración profunda.
-Características
+<p align="center">
+  <img src="c.png" alt="MineC Logo" width="180">
+</p>
 
-✅ Sintaxis minimalista tipo C
-✅ Bloques ASM x86-64 embebidos directamente
-✅ VM híbrida (bytecode + ejecución ASM real)
-✅ Emulador completo de registros x86-64
-✅ Debugger interactivo paso a paso
-✅ Inspección de memoria, stack y registros
-✅ Sin dependencias externas
+<h1 align="center"> MineC - Low-Level Language with x86-64 ASM Support 🚀</h1>
 
+<p align="center">
+  <b>MineC</b> es un lenguaje de programación de bajo nivel con soporte nativo para ASM x86-64 embebido, diseñado para control total del hardware y depuración profunda.
+</p>
 
-📁 Estructura del Proyecto
+<hr>
+
+<h2> Características</h2>
+<ul>
+  <li>✅ Sintaxis minimalista tipo C</li>
+  <li>✅ Bloques ASM x86-64 embebidos directamente</li>
+  <li>✅ VM híbrida (bytecode + ejecución ASM real)</li>
+  <li>✅ Emulador completo de registros x86-64</li>
+  <li>✅ Debugger interactivo paso a paso</li>
+  <li>✅ Inspección de memoria, stack y registros</li>
+  <li>✅ Sin dependencias externas</li>
+</ul>
+
+<hr>
+
+<h2> Estructura del Proyecto</h2>
+
+<pre>
 microc/
-├── token.h          # Definiciones de tokens, opcodes, registros
-├── lexer.h/cpp      # Tokenización del código fuente
-├── parser.h/cpp     # Construcción del AST
-├── ast.h            # Definición de nodos AST
-├── compiler.h/cpp   # Compilación AST → Bytecode
-├── vm.h/cpp         # Máquina virtual + emulador x86-64
-├── debugger.h/cpp   # Debugger interactivo
-├── main.cpp         # Punto de entrada
-├── Makefile         # Build system
-└── examples/
-    └── test.mc      # Programa de ejemplo
+├── <b>token.h</b>          # Definiciones de tokens, opcodes, registros
+├── <b>lexer.h/cpp</b>      # Tokenización del código fuente
+├── <b>parser.h/cpp</b>     # Construcción del AST
+├── <b>ast.h</b>            # Definición de nodos AST
+├── <b>compiler.h/cpp</b>   # Compilación AST → Bytecode
+├── <b>vm.h/cpp</b>         # Máquina virtual + emulador x86-64
+├── <b>debugger.h/cpp</b>   # Debugger interactivo
+├── <b>main.cpp</b>         # Punto de entrada
+├── <b>Makefile</b>         # Build system
+└── <b>examples/</b>
+    └── <b>test.mc</b>      # Programa de ejemplo
+</pre>
 
-🛠️ Compilación
-Requisitos
+<hr>
 
-g++ con soporte C++17
-Make
+<h2> Compilación</h2>
+<b>Requisitos:</b>
+<ul>
+  <li>g++ con soporte C++17</li>
+  <li>Make</li>
+</ul>
 
-Build
-bashmake clean
+<b>Build:</b>
+<pre>
+make clean
 make
-Ejecutar
-bash./microc examples/test.mc
-Modo Debug
-bash./microc examples/test.mc --debug
+</pre>
 
-📖 Sintaxis del Lenguaje
-Declaración de Variables
-cppint x = 10;
-int y = 20;
-Funciones
-cppvoid main() {
+<b>Ejecutar:</b>
+<pre>
+./microc examples/test.mc
+</pre>
+
+<b>Modo Debug:</b>
+<pre>
+./microc examples/test.mc --debug
+</pre>
+
+<hr>
+
+<h2> Sintaxis del Lenguaje</h2>
+
+<details>
+  <summary><b>Declaración de Variables</b></summary>
+  <pre><code>int x = 10;
+int y = 20;</code></pre>
+</details>
+
+<details>
+  <summary><b>Funciones</b></summary>
+  <pre><code>void main() {
     int result = x + y;
     print(result);
-}
-Operaciones Aritméticas
-cppint a = 5 + 3;
+}</code></pre>
+</details>
+
+<details>
+  <summary><b>Operaciones Aritméticas</b></summary>
+  <pre><code>int a = 5 + 3;
 int b = a * 2;
 int c = b - 10;
-int d = c / 2;
-Bloques ASM Embebido
-cppasm {
+int d = c / 2;</code></pre>
+</details>
+
+<details>
+  <summary><b>Bloques ASM Embebido</b></summary>
+  <pre><code>asm {
     mov rax 42
     add rax 8
     push rax
-}
-Print (salida a consola)
-cppprint(x + y * 2);
+}</code></pre>
+</details>
 
-🔧 Arquitectura Técnica
-1. Lexer (lexer.cpp)
-Convierte código fuente en tokens:
-int x = 10; → [INT, IDENTIFIER(x), ASSIGN, NUMBER(10), SEMICOLON]
-Tokens soportados:
+<details>
+  <summary><b>Print (salida a consola)</b></summary>
+  <pre><code>print(x + y * 2);</code></pre>
+</details>
 
-Keywords: int, void, asm, return, print
-Operadores: +, -, *, /, =, ==, !=, <, >
-Delimitadores: (, ), {, }, ;, ,
+<hr>
 
-2. Parser (parser.cpp)
-Construye un Abstract Syntax Tree (AST):
-int x = 10;
-    ↓
-VAR_DECL(x)
-  └─ NUMBER(10)
-Nodos AST:
+<h2> Arquitectura Técnica</h2>
+<table>
+  <tr>
+    <th>Módulo</th>
+    <th>Descripción</th>
+  </tr>
+  <tr>
+    <td>Lexer</td>
+    <td>Convierte código fuente en tokens</td>
+  </tr>
+  <tr>
+    <td>Parser</td>
+    <td>Construye el AST</td>
+  </tr>
+  <tr>
+    <td>Compiler</td>
+    <td>Traduce AST a bytecode híbrido</td>
+  </tr>
+  <tr>
+    <td>VM</td>
+    <td>Ejecuta bytecode y emula CPU x86-64</td>
+  </tr>
+  <tr>
+    <td>Debugger</td>
+    <td>Interfaz interactiva de depuración</td>
+  </tr>
+</table>
 
-PROGRAM: Raíz del programa
-VAR_DECL: Declaración de variable
-FUNC_DECL: Declaración de función
-BINARY_OP: Operación binaria (+, -, *, /)
-ASM_BLOCK: Bloque de código ASM
-PRINT: Instrucción de salida
+<hr>
 
-3. Compiler (compiler.cpp)
-Traduce AST a bytecode híbrido:
-x + y → [LOAD x, LOAD y, ADD]
-Opcodes:
-
-Stack: PUSH, POP
-Aritmética: ADD, SUB, MUL, DIV
-Memoria: LOAD, STORE
-Control: JMP, CALL, RET, HALT
-I/O: PRINT
-
-4. VM (vm.cpp)
-Ejecuta bytecode y emula CPU x86-64:
-Estado de la CPU:
-
-Registros: RAX, RBX, RCX, RDX, RSI, RDI, RSP, RBP
-Flags: ZF (zero), SF (sign), CF (carry), OF (overflow)
-Stack: Pila de ejecución
-Memoria global: Variables globales
-
-Instrucciones ASM Soportadas:
-
-mov reg, imm: Mover valor inmediato a registro
-mov reg, reg: Copiar registro
-add reg, imm: Sumar a registro
-sub reg, imm: Restar de registro
-push reg: Push registro al stack
-pop reg: Pop del stack a registro
-inc reg: Incrementar registro
-dec reg: Decrementar registro
-
-5. Debugger (debugger.cpp)
-Interfaz interactiva de depuración:
-Comandos:
-
-step / s: Ejecutar una instrucción
-continue / c: Continuar hasta el final
-regs / r: Mostrar registros
-stack: Mostrar stack
-help / h: Ayuda
-quit / q: Salir
-
-
-💡 Ejemplo Completo
-Archivo: examples/advanced.mc
-cppint a = 5;
+<h2> Ejemplo Completo</h2>
+<details>
+  <summary>Ver ejemplo avanzado</summary>
+  <pre><code>int a = 5;
 int b = 10;
 
 void main() {
@@ -157,10 +164,12 @@ void main() {
         push rcx
     }
 }
-Salida esperada:
-15
+</code></pre>
+</details>
+
+<b>Salida esperada:</b>
+<pre>15
 50
-Estado del CPU al final:
 === CPU State ===
 PC: 12
 RAX: 300
@@ -169,501 +178,284 @@ RCX: 302
 RDX: 2
 Flags: ZF=0 SF=0
 Stack: [302]
+</pre>
 
-🐛 Debugging Paso a Paso
-Ejemplo de sesión
-bash$ ./microc examples/test.mc --debug
+<hr>
+
+<h2> Debugging Paso a Paso</h2>
+<pre>
+$ ./microc examples/test.mc --debug
 
 === MicroC Debugger Commands ===
-step (s)    - Execute one instruction
-continue (c) - Run until breakpoint
-regs (r)    - Show CPU registers
-stack       - Show stack contents
-quit (q)    - Exit debugger
-help (h)    - Show this help
+step (s)    - Ejecutar una instrucción
+continue (c) - Ejecutar hasta el final
+regs (r)    - Mostrar registros
+stack       - Mostrar stack
+quit (q)    - Salir debugger
+help (h)    - Ayuda
+</pre>
 
-(microc-db) s
-=== CPU State ===
-PC: 1
-RAX: 0
-RBX: 0
-Stack: [10]
+<hr>
 
-(microc-db) s
-=== CPU State ===
-PC: 2
-RAX: 0
-RBX: 0
-Stack: []
-Globals: x=10
+<h2> Casos de Uso</h2>
+<ul>
+  <li>Manipulación directa de registros</li>
+  <li>Operaciones con stack</li>
+  <li>Cálculos híbridos (high-level + ASM)</li>
+</ul>
 
-(microc-db) regs
-=== CPU State ===
-PC: 2
-RAX: 0
-RBX: 0
-RCX: 0
-RDX: 0
-Flags: ZF=0 SF=0
-Stack: []
+<hr>
 
-🔬 Casos de Uso
-1. Manipulación directa de registros
-cppvoid main() {
-    asm {
-        mov rax 0xFF
-        mov rbx 0x10
-        add rax rbx
-    }
-}
-2. Operaciones con stack
-cppvoid main() {
-    asm {
-        push rax
-        push rbx
-        pop rcx
-        pop rdx
-    }
-}
-3. Cálculos híbridos (high-level + ASM)
-cppint base = 100;
+<h2> Extensiones Futuras</h2>
+<ul>
+  <li>Control de flujo: if, while, for</li>
+  <li>Arrays y punteros</li>
+  <li>Structs</li>
+  <li>Funciones con parámetros</li>
+  <li>Más instrucciones ASM</li>
+  <li>Breakpoints y watch variables</li>
+  <li>Memory dump</li>
+  <li>Backend x86-64 nativo</li>
+  <li>Optimizaciones</li>
+</ul>
 
-void main() {
-    int result = base * 2;
-    
-    asm {
-        mov rax result
-        add rax 50
-    }
-    
-    print(result);
-}
+<hr>
 
-🚀 Extensiones Futuras
-Próximas características:
+<h2> Flujo de Ejecución Completo</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/youruser/yourrepo/main/img/flowchart.png" alt="Flujo de ejecución MineC" width="600">
+</p>
 
-Control de flujo: if, while, for
-Arrays y punteros: int arr[10], int* ptr
-Structs: Estructuras de datos custom
-Funciones con parámetros: int add(int a, int b)
-Más instrucciones ASM: jmp, jz, call, cmp
-Breakpoints: Puntos de interrupción en debugger
-Watch variables: Observar cambios en variables
-Memory dump: Inspección de memoria raw
-Backend x86-64 nativo: Compilación a binario real
-Optimizaciones: Dead code elimination, constant folding
+<hr>
 
+<h2> Diseño de Decisiones Clave</h2>
+<ul>
+  <li>VM híbrida: Portabilidad y debugging fácil</li>
+  <li>Emulación de registros: Seguridad y educación</li>
+</ul>
 
-📚 Flujo de Ejecución Completo
-┌─────────────┐
-│ Código .mc  │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│   LEXER     │  Tokenización
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│   PARSER    │  AST Generation
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│  COMPILER   │  AST → Bytecode
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│     VM      │  Ejecución
-│  + x86-64   │  - Bytecode
-│  Emulator   │  - ASM blocks
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│  DEBUGGER   │  Inspección
-│  (optional) │  Step-by-step
-└─────────────┘
+<hr>
 
-🎯 Diseño de Decisiones Clave
-¿Por qué VM híbrida (Bytecode + ASM)?
-Ventajas:
-
-Portabilidad: El bytecode corre en cualquier plataforma
-Debugging fácil: Control total sobre ejecución paso a paso
-ASM seguro: Emulación de x86-64 sin riesgos de segfaults
-Extensible: Fácil agregar nuevas instrucciones
-
-Trade-off:
-
-No es 100% nativo (pero se puede agregar backend)
-Performance limitada vs binario real
-
-¿Por qué emular registros en lugar de usar los reales?
-Razones:
-
-Portabilidad: Funciona en ARM, x86, cualquier arquitectura
-Seguridad: No corrompe el estado real del proceso
-Debugging: Podemos inspeccionar/modificar registros en caliente
-Educativo: Perfecto para aprender ASM sin crashes
-
-
-🧪 Testing
-Test 1: Variables y Aritmética
-cppint x = 10;
+<h2> Testing</h2>
+<details>
+  <summary>Test 1: Variables y Aritmética</summary>
+  <pre><code>int x = 10;
 int y = 5;
 
 void main() {
     int z = x + y * 2;
     print(z);
 }
-Salida esperada: 20
-Test 2: ASM Básico
-cppvoid main() {
+// Salida esperada: 20
+</code></pre>
+</details>
+<details>
+  <summary>Test 2: ASM Básico</summary>
+  <pre><code>void main() {
     asm {
         mov rax 42
         add rax 8
     }
 }
-Estado final RAX: 50
-Test 3: Interacción VM + ASM
-cppint base = 100;
+// Estado final RAX: 50
+</code></pre>
+</details>
 
-void main() {
-    print(base);
-    
-    asm {
-        mov rax 50
-        push rax
-    }
-    
-    int x = base + 10;
-    print(x);
-}
-Salida esperada:
-100
-110
-Test 4: Stack Operations
-cppvoid main() {
-    asm {
-        mov rax 10
-        mov rbx 20
-        mov rcx 30
-        push rax
-        push rbx
-        push rcx
-        pop rdx
-        pop rsi
-        pop rdi
-    }
-}
-Estado final:
+<hr>
 
-RDX = 30
-RSI = 20
-RDI = 10
+<h2> Internals Deep Dive</h2>
+<ul>
+  <li>Variables globales y locales</li>
+  <li>Formato de instrucciones</li>
+  <li>Emulación de CPU y flags</li>
+  <li>Parser de ASM simplificado</li>
+</ul>
 
+<hr>
 
-🔍 Internals Deep Dive
-Representación de Variables
-Variables globales:
-cppint x = 10;
-Se almacenan en:
-cppmap<string, int64_t> globals;
-globals["_tmp0"] = 10;
-Variables locales:
-Actualmente usan el mismo mecanismo (futuro: stack frames)
-Formato de Instrucciones
-cppstruct Instruction {
-    OpCode op;        // Tipo de operación
-    int64_t operand;  // Operando (índice, valor, dirección)
-};
-Ejemplo:
-cppint x = 5 + 3;
-Se compila a:
-PUSH 5
-PUSH 3
-ADD
-STORE 0
-Emulación de CPU
-cppclass CPUState {
-    map<Register, int64_t> regs;  // Registros
-    vector<int64_t> stack;         // Stack
-    map<string, int64_t> memory;   // Heap/globals
-    bool zf, sf, cf, of;           // Flags
-};
-Actualización de Flags:
-cppvoid updateFlags(int64_t result) {
-    zf = (result == 0);    // Zero flag
-    sf = (result < 0);     // Sign flag
-}
-Parser de ASM
-El parser ASM es simplificado pero funcional:
-cppvoid VM::executeASM(const string& asmCode) {
-    istringstream iss(asmCode);
-    string inst, arg1, arg2;
-    
-    while (iss >> inst) {
-        if (inst == "mov") {
-            // Parse mov rax, 42
-        }
-        else if (inst == "add") {
-            // Parse add rax, 10
-        }
-        // ... más instrucciones
-    }
-}
-Limitaciones actuales:
+<h2> Conceptos Técnicos</h2>
+<ul>
+  <li>Compilación en dos fases</li>
+  <li>Stack-based VM</li>
+  <li>Híbrido Stack + Registros</li>
+</ul>
 
-Solo sintaxis Intel (no AT&T)
-Solo registros de 64-bit
-No soporta memory addressing [rax+8]
-No soporta labels/jumps
+<hr>
 
+<h2> Seguridad y Limitaciones</h2>
+<ul>
+  <li>✅ Aislado del sistema</li>
+  <li>✅ Sin undefined behavior</li>
+  <li>❌ No soporta memory addressing, jumps, recursión, floats</li>
+  <li>✅ Soporta enteros, ASM inline, debugging</li>
+</ul>
 
-🎓 Conceptos Técnicos
-1. Compilación en dos fases
-Fase 1: Front-end
-Source → Tokens → AST
-Independiente de arquitectura
-Fase 2: Back-end
-AST → Bytecode/ASM → Ejecución
-Específico de arquitectura
-2. Stack-based VM
-Usamos una VM basada en stack:
-Expresión: 3 + 4 * 2
+<hr>
 
-Stack trace:
-[3]           PUSH 3
-[3, 4]        PUSH 4
-[3, 4, 2]     PUSH 2
-[3, 8]        MUL
-[11]          ADD
-Ventajas:
+<h2> Troubleshooting</h2>
+<ul>
+  <li><b>Error:</b> "Unexpected token at line X" <br> <b>Solución:</b> Verifica sintaxis</li>
+  <li><b>Error:</b> "Cannot open file" <br> <b>Solución:</b> Verifica existencia del archivo</li>
+  <li><b>ASM no ejecuta correctamente:</b> Usa solo registros 64-bit</li>
+  <li><b>Debugger no muestra cambios:</b> Usa <code>step</code> en vez de <code>continue</code></li>
+</ul>
 
-Simple de implementar
-Código compacto
-No necesita registros virtuales
+<hr>
 
-3. Híbrido Stack + Registros
-El diseño único de MicroC:
-cppint x = 10;    // Stack-based VM
+<h2> Comparación con Otros Lenguajes</h2>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>MicroC</th>
+    <th>C</th>
+    <th>Assembly</th>
+    <th>Python</th>
+  </tr>
+  <tr>
+    <td>High-level syntax</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Inline ASM</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>N/A</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>Interactive debug</td>
+    <td>✅</td>
+    <td>Ext.</td>
+    <td>Ext.</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Register access</td>
+    <td>✅</td>
+    <td>Via ASM</td>
+    <td>✅</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>Memory safety</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Performance</td>
+    <td>Medium</td>
+    <td>High</td>
+    <td>Highest</td>
+    <td>Low</td>
+  </tr>
+</table>
 
-asm {
-    mov rax 42  // Register-based CPU
-}
-Ambos sistemas coexisten:
+<hr>
 
-VM: Usa stack para operaciones high-level
-ASM: Usa registros emulados x86-64
+<h2> Learning Path</h2>
+<ol>
+  <li>Básico: Compilar y ejecutar <code>examples/test.mc</code></li>
+  <li>ASM Intro: Usar bloques <code>asm { }</code></li>
+  <li>Debugging: Ejecutar en modo <code>--debug</code></li>
+  <li>Avanzado: Modificar el compiler para nuevas features</li>
+</ol>
 
+<hr>
 
-🛡️ Seguridad y Limitaciones
-Seguridad
-✅ Aislado del sistema
+<h2> Contribuir</h2>
+<ul>
+  <li>Agregar nueva instrucción ASM</li>
+  <li>Agregar nuevo tipo de dato</li>
+</ul>
 
-No accede a memoria real del sistema
-No puede ejecutar syscalls
-Stack/heap virtual
+<hr>
 
-✅ Sin undefined behavior
+<h2> Soporte</h2>
+<ul>
+  <li>Revisa sintaxis en ejemplos</li>
+  <li>Verifica que todos los .cpp están compilados</li>
+  <li>Usa <code>--debug</code> para diagnosticar</li>
+</ul>
+<b>Recursos:</b>
+<ul>
+  <li><a href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html">x86-64 reference: Intel Manual Vol. 2</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Compiler design: Dragon Book</a></li>
+  <li><a href="https://craftinginterpreters.com/">VM design: Crafting Interpreters</a></li>
+</ul>
 
-División por cero: manejado
-Stack overflow: detectado
-Out of bounds: futuro
+<hr>
 
-Limitaciones Actuales
-❌ No soporta:
+<h2> Licencia</h2>
+<p><b>Apache License 2.0</b> - Libre para uso mientras se respete la licencia</p>
 
-Memory addressing [rax+offset]
-Jumps condicionales jz, jnz
-Funciones con parámetros
-Recursión
-Heap allocation dinámico
-String/char tipos
-Floats/doubles
+<hr>
 
-✅ Soporta:
+<h2> Logros Técnicos</h2>
+<ul>
+  <li>✅ Lexer completo funcional</li>
+  <li>✅ Parser recursivo descendente</li>
+  <li>✅ Compilador AST → Bytecode</li>
+  <li>✅ VM híbrida stack + registros</li>
+  <li>✅ Emulador x86-64 con 8 registros + flags</li>
+  <li>✅ Debugger interactivo tipo GDB</li>
+  <li>✅ Sin dependencias externas</li>
+  <li>✅ ~1000 líneas de código C++</li>
+</ul>
 
-Enteros de 64-bit
-Operaciones aritméticas
-Bloques ASM inline
-Variables globales
-Debugging completo
+<hr>
 
+<h2> Próximos Pasos</h2>
+<ul>
+  <li>Implementar control de flujo (<code>if</code>, <code>while</code>, <code>for</code>)</li>
+  <li>Agregar funciones con parámetros</li>
+  <li>Soportar arrays</li>
+  <li>Memory addressing en ASM</li>
+  <li>Backend x86-64 nativo</li>
+</ul>
 
-🔧 Troubleshooting
-Error: "Unexpected token at line X"
-Causa: Error de sintaxis
-Solución:
-cppint x 10;      // ❌ Falta '='
-int x = 10;    // ✅ Correcto
-Error: "Cannot open file"
-Causa: Archivo no existe
-Solución:
-bashls examples/test.mc    # Verificar que existe
-./microc examples/test.mc
-ASM no ejecuta correctamente
-Causa: Sintaxis incorrecta o registro no soportado
-Ejemplo incorrecto:
-cppasm {
-    mov eax 10     // ❌ Usa rax (64-bit)
-    mov [rax] 10   // ❌ Memory addressing no soportado
-}
-Ejemplo correcto:
-cppasm {
-    mov rax 10     // ✅
-    add rax 5      // ✅
-}
-Debugger no muestra cambios
-Causa: Usar continue en vez de step
-Solución:
-(microc-db) s      # Step muestra estado
-(microc-db) r      # Registros
+<hr>
 
-📊 Comparación con Otros Lenguajes
-FeatureMicroCCAssemblyPythonHigh-level syntax✅✅❌✅Inline ASM✅✅N/A❌Interactive debug✅Ext.Ext.✅Register access✅Via ASM✅❌Memory safety✅❌❌✅PerformanceMediumHighHighestLow
+<h2> Filosofía de Diseño</h2>
+<blockquote>
+  "Simple pero poderoso"<br>
+  MineC no intenta ser C++. Es una herramienta educativa y experimental para:
+  <ul>
+    <li>Entender cómo funcionan los compiladores</li>
+    <li>Aprender x86-64 Assembly de forma segura</li>
+    <li>Experimentar con lenguajes de bajo nivel</li>
+    <li>Debugging profundo sin GDB</li>
+  </ul>
+  <b>Principios:</b>
+  <ul>
+    <li>Código legible sobre performance</li>
+    <li>Modularidad sobre monolitos</li>
+    <li>Seguridad sobre velocidad</li>
+    <li>Educación sobre producción</li>
+  </ul>
+</blockquote>
 
-🎯 Learning Path
-Nivel 1: Básico
+<hr>
 
-Compilar y ejecutar examples/test.mc
-Modificar valores de variables
-Agregar operaciones aritméticas
-
-Nivel 2: ASM Intro
-
-Usar bloques asm { }
-Mover valores a registros
-Usar push/pop
-
-Nivel 3: Debugging
-
-Ejecutar en modo --debug
-Step through instructions
-Inspeccionar registros y stack
-
-Nivel 4: Avanzado
-
-Modificar el compiler para nuevas features
-Agregar nuevas instrucciones ASM
-Implementar control de flujo
-
-
-🤝 Contribuir
-Agregar nueva instrucción ASM
-1. Modificar vm.cpp:
-cppelse if (inst == "xor") {
-    iss >> arg1 >> arg2;
-    // Implementar XOR
-}
-2. Testear:
-cppasm {
-    mov rax 0xFF
-    xor rax rax  // RAX = 0
-}
-Agregar nuevo tipo de dato
-1. token.h:
-cppenum class TokenType {
-    // ...
-    FLOAT,  // Nuevo
-};
-2. lexer.cpp:
-cppif (id == "float") return {TokenType::FLOAT, id, line};
-3. parser.cpp, compiler.cpp, vm.cpp:
-Implementar lógica para floats
-
-📞 Soporte
-Issues comunes:
-
-Revisa sintaxis en ejemplos
-Verifica que todos los .cpp están compilados
-Usa --debug para diagnosticar
-
-Recursos:
-
-x86-64 reference: Intel Manual Vol. 2
-Compiler design: Dragon Book
-VM design: Crafting Interpreters
-
-
-📜 Licencia
-MIT License - Libre para uso educativo y comercial
-
-🏆 Logros Técnicos
-✅ Lexer completo funcional
-✅ Parser recursivo descendente
-✅ Compilador AST → Bytecode
-✅ VM híbrida stack + registros
-✅ Emulador x86-64 con 8 registros + flags
-✅ Debugger interactivo tipo GDB
-✅ Sin dependencias externas
-✅ ~1000 líneas de código C++
-
-🚀 Próximos Pasos
-
-Implementar control de flujo:
-
-cppif (x > 10) {
-    print(x);
-}
-
-Agregar funciones con parámetros:
-
-cppint add(int a, int b) {
-    return a + b;
-}
-
-Soportar arrays:
-
-cppint arr[10];
-arr[0] = 42;
-
-Memory addressing en ASM:
-
-cppasm {
-    mov [rax+8] 42
-}
-
-Backend x86-64 nativo:
-
-
-Generar código máquina real
-Usar ensamblador NASM/GAS
-Linkear con ld
-
-
-💬 Filosofía de Diseño
-"Simple pero poderoso"
-MicroC no intenta ser C++. Es una herramienta educativa y experimental para:
-
-Entender cómo funcionan los compiladores
-Aprender x86-64 Assembly de forma segura
-Experimentar con lenguajes de bajo nivel
-Debugging profundo sin GDB
-
-Principios:
-
-Código legible sobre performance
-Modularidad sobre monolitos
-Seguridad sobre velocidad
-Educación sobre producción
-
-
-🎬 Conclusión
-MicroC es un proyecto completo que demuestra:
-
-Diseño de lenguajes de programación
-Compilación multi-etapa
-Arquitectura de CPU x86-64
-Debugging a bajo nivel
-Integración VM + ASM nativo
-
-Total de componentes:
-
-8 módulos C++
-~1200 líneas de código
-30+ instrucciones soportadas
-Debugger completo
+<h2> Conclusión</h2>
+<p>
+MineC es un proyecto completo que demuestra:
+<ul>
+  <li>Diseño de lenguajes de programación</li>
+  <li>Compilación multi-etapa</li>
+  <li>Arquitectura de CPU x86-64</li>
+  <li>Debugging a bajo nivel</li>
+  <li>Integración VM + ASM nativo</li>
+</ul>
+<b>Total de componentes:</b>
+<ul>
+  <li>8 módulos C++</li>
+  <li>~1200 líneas de código</li>
+  <li>30+ instrucciones soportadas</li>
+  <li>Debugger completo</li>
+</ul>
+</p>
