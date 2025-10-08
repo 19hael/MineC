@@ -223,7 +223,7 @@ help (h)    - Ayuda
 
 <h2> Flujo de Ejecución Completo</h2>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/youruser/yourrepo/main/img/flowchart.png" alt="Flujo de ejecución MineC" width="600">
+  <img src="1.png">
 </p>
 
 <hr>
