@@ -26,7 +26,7 @@
 <h2> Estructura del Proyecto</h2>
 
 <pre>
-microc/
+MineC/
 ├── <b>token.h</b>          # Definiciones de tokens, opcodes, registros
 ├── <b>lexer.h/cpp</b>      # Tokenización del código fuente
 ├── <b>parser.h/cpp</b>     # Construcción del AST
@@ -57,12 +57,12 @@ make
 
 <b>Ejecutar:</b>
 <pre>
-./microc examples/test.mc
+./MineC examples/test.mc
 </pre>
 
 <b>Modo Debug:</b>
 <pre>
-./microc examples/test.mc --debug
+./MineC examples/test.mc --debug
 </pre>
 
 <hr>
@@ -184,9 +184,9 @@ Stack: [302]
 
 <h2> Debugging Paso a Paso</h2>
 <pre>
-$ ./microc examples/test.mc --debug
+$ ./MineC examples/test.mc --debug
 
-=== MicroC Debugger Commands ===
+=== MineC Debugger Commands ===
 step (s)    - Ejecutar una instrucción
 continue (c) - Ejecutar hasta el final
 regs (r)    - Mostrar registros
@@ -306,7 +306,7 @@ void main() {
 <table>
   <tr>
     <th>Feature</th>
-    <th>MicroC</th>
+    <th>MineC</th>
     <th>C</th>
     <th>Assembly</th>
     <th>Python</th>
