@@ -2,7 +2,7 @@
   <img src="c.png" alt="MineC Logo" width="180">
 </p>
 
-<h1 align="center"> MineC - Low-Level Language with x86-64 ASM Support 🚀</h1>
+<h1 align="center"> MineC - Low-Level Language with x86-64 ASM Support </h1>
 
 <p align="center">
   <b>MineC</b> es un lenguaje de programación de bajo nivel con soporte nativo para ASM x86-64 embebido, diseñado para control total del hardware y depuración profunda.
