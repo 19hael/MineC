@@ -15,13 +15,24 @@ class Parser {
     ASTPtr parseProgram();
     ASTPtr parseDeclaration();
     ASTPtr parseVarDecl();
-    ASTPtr parseFuncDecl();
+    ASTPtr parseFuncDecl(TokenType returnType);
     ASTPtr parseBlock();
     ASTPtr parseStatement();
+    ASTPtr parseIfStatement();
+    ASTPtr parseWhileStatement();
+    ASTPtr parseReturnStatement();
+    ASTPtr parsePrintStatement();
+    ASTPtr parseExpressionStatement();
+    ASTPtr parseAsmBlock();
     ASTPtr parseExpr();
+    ASTPtr parseAssignment();
+    ASTPtr parseEquality();
+    ASTPtr parseComparison();
     ASTPtr parseTerm();
     ASTPtr parseFactor();
-    ASTPtr parseAsmBlock();
+    ASTPtr parseUnary();
+    ASTPtr parsePrimary();
+    ASTPtr finishCall(const std::string& name);
     
 public:
     Parser(const std::vector<Token>& toks);

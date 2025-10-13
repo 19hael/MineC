@@ -1,5 +1,6 @@
 #include "lexer.h"
 #include <cctype>
+#include <stdexcept>
 
 Lexer::Lexer(const std::string& src) : source(src), pos(0), line(1) {}
 
@@ -23,12 +24,13 @@ Token Lexer::readIdentifier() {
     while (pos < source.length() && (isalnum(source[pos]) || source[pos] == '_')) {
         id += source[pos++];
     }
-    
+
     if (id == "int") return {TokenType::INT, id, line};
     if (id == "void") return {TokenType::VOID, id, line};
     if (id == "asm") return {TokenType::ASM, id, line};
     if (id == "return") return {TokenType::RETURN, id, line};
     if (id == "if") return {TokenType::IF, id, line};
+    if (id == "else") return {TokenType::ELSE, id, line};
     if (id == "while") return {TokenType::WHILE, id, line};
     if (id == "print") return {TokenType::PRINT, id, line};
     
@@ -99,7 +101,7 @@ Token Lexer::nextToken() {
         case ',': return {TokenType::COMMA, ",", line};
     }
     
-    return {TokenType::END_OF_FILE, "", line};
+    throw std::runtime_error("Unknown character '" + std::string(1, c) + "' at line " + std::to_string(line));
 }
 
 std::vector<Token> Lexer::tokenize() {

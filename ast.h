@@ -4,8 +4,21 @@
 #include <memory>
 
 enum class ASTType {
-    PROGRAM, VAR_DECL, FUNC_DECL, BLOCK, BINARY_OP, NUMBER, IDENTIFIER,
-    CALL, RETURN, ASM_BLOCK, IF_STMT, WHILE_STMT, PRINT
+    PROGRAM,
+    VAR_DECL,
+    FUNC_DECL,
+    BLOCK,
+    BINARY_OP,
+    NUMBER,
+    IDENTIFIER,
+    CALL,
+    RETURN,
+    ASM_BLOCK,
+    IF_STMT,
+    WHILE_STMT,
+    PRINT,
+    ASSIGN,
+    EXPR_STMT
 };
 
 struct ASTNode {
